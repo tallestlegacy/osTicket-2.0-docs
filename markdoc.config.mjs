@@ -10,8 +10,8 @@ export default defineMarkdocConfig({
                 yaml: '~/Homestead/Homestead.yaml',
             },
         },
-        links : {
-          homesteadYaml : "/guides/project-setup#4-edit-the-homesteadyaml-file"
-        }
+        links: {
+            homesteadYaml: '/guides/project-setup#4-edit-the-homesteadyaml-file',
+        },
     },
 })

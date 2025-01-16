@@ -1,12 +1,105 @@
 ---
-title: Running the project
-description: Install the project dependecies and start a local server
+title: How to run the project
+description: Install/Manage project dependecies and start a local server
 ---
 
-Once you've installed the necessary dependencies and set up the Homestead environment, 
-you can now clone and run the project.
 
-### Cloning osTicket 2.0
+## Fresh install
 
-Run the following command on your project directory 
-<!-- (which you mapped on your `Homestead.yaml` file {% link href=$links.homesteadYaml %}here{% /link %} ) -->
+### 1. Starting the virtual machine
+
+{% steps %}
+
+1. `cd` into your Homestead directory
+    ```sh
+    cd ~/Homestead
+    ```
+2. Start the vagrant box
+    ```sh
+    # ~/Homestead/
+    # for VirtualBox setups
+    vagrant up
+    # or other provider
+    vagrant up --provider="provider name"   # eg. parallels
+    ```
+3. Connect to the machine
+    ```sh
+    # ~/Homestead/
+    vagrant ssh
+    ```
+4. `cd` into the osTicket-2.0 project directory from withing vagrant
+    ```sh
+    cd ~/Code/osTicket-2.0  # change this to the directory you set up on the Homestead.yaml file
+    ```
+
+{% /steps %}
+
+
+### 2. Installing PHP and JS dependencies
+
+{% steps %}
+
+1. Install composer if it's not already available
+    ```sh
+    composer global require "laravel/installer=~1.1"
+    ```
+2. Install the PHP deps
+    ```sh
+    # ~/Code/osTicket-2.0/
+    composer install
+    ```
+3. Initialize the database
+    ```sh
+    php artisan migrate
+    ```
+    If you don't have the database already, press `y` to create it.
+3. Install JS dependencies 
+    ```sh
+    # ~/Code/osTicket-2.0/
+    yarn 
+    ```
+
+{% /steps %}
+
+## Starting the dev server
+
+Within the vagrant project directory, run
+```
+# ~/Code/osTicket-2.0/
+yarn dev
+```
+
+You should be able to access the app via your domain alias
+(eg. [osticket.homestead.local](http://osticket.homestead.local)).
+Any variations would be indicated on the cli 😊.
+
+## Steps after pulling/merging new changes
+
+
+Incase of new migration :
+
+```sh
+# ~/Code/osTicket-2.0/
+composer dump-autoload --optimize
+php artisan migrate
+```
+
+Clear cache, reinstall dependencies and run the project.
+
+```sh
+# ~/Code/osTicket-2.0/
+# remove all JS dependencies
+rm -rf node_modules
+
+# reinstall the dependencies
+yarn
+
+# clear php cache
+php artisan config:clear && 
+php artisan config:cache && 
+php artisan cache:clear  && 
+php artisan route:cache
+
+# start the dev server
+yarn dev
+```

@@ -49,7 +49,7 @@ You will need to install the parallels plugin for vagrant first.
 vagrant plugin install vagrant-parallels
 ```
 
-Here is an example of how to configure the Vagrantfile to use Parallels as the provider:
+You can also edit the `Vagrantfile` to use PHP
 
 ```php 
 # ~/Homestead/Vagrantfile
@@ -63,9 +63,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-This is optional since Homestead will contain this files so you can skip this step.
-
-You can visit the [vagrant-parallels](https://parallels.github.io/vagrant-parallels/) documentation website for more information about how to manage this plugin
+Visit the [vagrant-parallels](https://parallels.github.io/vagrant-parallels/) documentation website for more information about how to manage this plugin
 {% /tabitem %}
 
 {% /tabs %}
@@ -189,7 +187,7 @@ On Unix, map the project IP to a custom domain on your `etc/hosts`:
 ```sh ins={7}
 # /etc/hosts
 127.0.0.1       localhost
-255.255.255.255	broadcasthost
+255.255.255.255 broadcasthost
 ::1             localhost
 
 # OSTicket
@@ -217,15 +215,15 @@ On Unix, map the project IP to a custom domain on your `etc/hosts`:
     # ~/Code/osTicket-2.0/.env
 
     # laravel app config
-    API_URL=http://osticket.homestead.local
+    API_URL=http://osticket.homestead.local # change this your domain
     APP_URL=http://osticket.homestead.local
 
     # database config
     DB_CONNECTION=mysql
-    DB_DATABASE=osticket
+    DB_DATABASE="db name"                   # eg. ost2
     DB_HOST=127.0.0.1
-    DB_USERNAME=root
-    DB_PASSWORD=secret
+    DB_USERNAME="your username"             # eg. homestead
+    DB_PASSWORD="your DB password"          # do your thing
     DB_PORT=3306
 
     # session config
@@ -234,7 +232,7 @@ On Unix, map the project IP to a custom domain on your `etc/hosts`:
 
     # vite config
     VITE_API_URL=http://osticket.homestead.local
-    VITE_IP=192.168.56.56
+    VITE_IP=192.168.56.56                   # or your custom project IP
     ```
 
 {% /steps %}
