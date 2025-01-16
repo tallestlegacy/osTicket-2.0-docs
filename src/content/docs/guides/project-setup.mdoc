@@ -1,0 +1,240 @@
+---
+title: Project Setup Guide
+description: Create a Homestead instance, configure your Virtual Machine and get started with the project source code
+---
+
+> The following instructions assume your Homestead directory is `~/Homestead/`.
+
+## Homestead
+
+### 1. Create a Homestead directory
+
+See the [First steps](https://laravel.com/docs/11.x/homestead#first-steps) if you need the official reference for more information about how to 
+get started with Homestead, but it basically boils down to this :
+
+{% steps %}
+
+1. Clone the Homestead repo
+    ```sh
+    git clone https://github.com/laravel/homestead.git ~/Homestead
+    ```
+
+2. Change into the homestead directory
+    ```sh
+    cd ~/Homestead
+    ```
+
+3. Generate the `Homestead.yaml` file
+    ```sh
+    bash init.sh
+    ```
+{% /steps %}
+
+
+### 2. Set up the virtual machine provider for vagrant
+
+Before you proceed, ensure that you have the required dependencies mentioned on the [Environment setup](/guides/environment) guide.
+
+{% tabs syncKey="vagrant-provider" %}
+
+{% tabitem label="VirtualBox" %}
+Vagrant should have `virtualbox` support for out of the box.
+{% /tabitem %}
+
+{% tabitem label="Parallels" %}
+You will need to install the parallels plugin for vagrant first.
+
+```sh
+# ~/Homestead/
+vagrant plugin install vagrant-parallels
+```
+
+Here is an example of how to configure the Vagrantfile to use Parallels as the provider:
+
+```php 
+# ~/Homestead/Vagrantfile
+Vagrant.configure("2") do |config|
+
+    config.vm.provider "parallels" do |prl|
+        prl.memory = 2048 # Amount of memory to allocate to the VM (optional)
+        prl.cpus = 2 # Number of CPUs to allocate to the VM (optional)
+    end
+
+end
+```
+
+This is optional since Homestead will contain this files so you can skip this step.
+
+You can visit the [vagrant-parallels](https://parallels.github.io/vagrant-parallels/) documentation website for more information about how to manage this plugin
+{% /tabitem %}
+
+{% /tabs %}
+
+
+### 3. Initialize the vagrant environment
+
+Initialize a new Vagrant project (if you don't have a `Vagrantfile` yet):
+
+
+```sh 
+# ~/Homestead/
+vagrant init
+```
+
+
+### 4. Edit the `Homestead.yaml` file
+
+As a pre-requisite, you will need to generate an ssh key to access the project later.
+Ensure your configuration file matches this with relevant changes.
+
+```yaml
+# ~/Homestead/Homestead.yaml
+ip: "192.168.56.56"                             # you can use a custom IP for this
+memory: 2048
+cpus: 2
+provider: virtualbox                            # change this to the relevent provider eg. parallels
+# box: laravel/homestead-arm                    # use this if you're on ARM
+
+authorize: ~/.ssh/id_rsa.pub                    # use the correct path to your public rsa
+keys:
+    - ~/.ssh/id_rsa                             # use the correct path to your private rsq
+
+folders:
+    - map: <local machine projects directory>   # eg. ~/Code/ where ~/Code/osTicket-2.0
+      to:  <virtual machine projects path>      # eg. /home/vagrant/Code 
+
+sites:
+    - map: <build output domain>                # eg. osticket-20.local
+      to:  <public folder path>                 # eg. /home/vagrant/Code/osTicket-2.0/public
+      php: "8.2"
+
+databases:
+    - homestead
+
+features:
+    - mysql: true
+    - mariadb: false
+    - postgresql: false
+    - ohmyzsh: false
+    - webdriver: false
+
+services:
+    - enabled:
+          - "mysql"
+
+```
+
+
+### 5. Start the VM
+
+This will instruct Vagrant to use Parallels to create and start the virtual machine.
+
+{% tabs syncKey="vagrant-provider" %}
+
+{% tabitem label="VirtualBox" %}
+```sh
+# ~/Homestead/
+vagrant up
+```
+{% /tabitem %}
+
+{% tabitem label="Parallels" %}
+```sh
+# ~/Homestead/
+vagrant up --provider=parallels
+```
+{% /tabitem %}
+
+
+{% tabitem label="Multiple providers" %}
+If you have a multi-provider configuration and/or want to be sure that exactly parallels provider 
+will be used, then you can specify it explicitly.
+```sh
+# ~/Homestead/
+vagrant up --provider="provider name"
+```
+{% /tabitem %}
+
+{% /tabs %}
+
+
+### Working with the Vagrant machine
+
+Access the VM through SSH with the following command:
+
+```sh
+# ~/Homestead/
+$ vagrant ssh
+```
+Stop the VM with the following commands:
+
+```sh
+# ~/Homestead/
+$ vagrant halt
+```
+
+Run `vagrant --help` to show more options you may have access to.
+
+## Additional configurations
+
+#### Vagrantfile
+You can add additional configurations to your Vagrantfile, such as port forwarding, network settings,
+or shared folders, depending on your needs.
+
+#### Project IP
+
+On Unix, map the project IP to a custom domain on your `etc/hosts`:
+
+
+```sh ins={7}
+# /etc/hosts
+127.0.0.1       localhost
+255.255.255.255	broadcasthost
+::1             localhost
+
+# OSTicket
+192.168.56.56   osticket.homestead.local
+```
+
+
+## Source code and Environment variables
+
+{% steps %}
+1. Within you projects folder (eg. `~/Code/`) clone the osTicket Github project :
+    ```sh 
+    # ~/Code/
+    git clone https://github.com/Enhancesoft/osTicket-2.0/ 
+    cd ./osTicket-2.0
+    ```
+
+2. Create the `.env` file
+    ```sh
+    # ~/Code/osTicket-2.0/
+    cp ./.env.example .env
+    ```
+3. Set up IP addresses and database configs
+    ```sh
+    # ~/Code/osTicket-2.0/.env
+
+    # laravel app config
+    API_URL=http://osticket.homestead.local
+    APP_URL=http://osticket.homestead.local
+
+    # database config
+    DB_CONNECTION=mysql
+    DB_DATABASE=osticket
+    DB_HOST=127.0.0.1
+    DB_USERNAME=root
+    DB_PASSWORD=secret
+    DB_PORT=3306
+
+    # session config
+    SESSION_DOMAIN="osticket.homestead.local"
+    SESSION_DRIVER=database
+
+    # vite config
+    VITE_API_URL=http://osticket.homestead.local
+    VITE_IP=192.168.56.56
+    ```
+
+{% /steps %}

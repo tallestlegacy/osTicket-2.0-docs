@@ -3,7 +3,9 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import guides from './src/routes/guides'
 
-import markdoc from '@astrojs/markdoc';
+import markdoc from '@astrojs/markdoc'
+
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,5 +21,5 @@ export default defineConfig({
                 autogenerate: { directory: 'reference' },
             },
         ],
-    }), markdoc()],
+    }), markdoc(), react()],
 })

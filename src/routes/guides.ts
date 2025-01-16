@@ -2,7 +2,8 @@ export default {
     label: 'Guides',
     items: [
         // Each item here is one entry in the navigation menu.
-        { label: 'Example Guide', slug: 'guides/example' },
-        { label: 'Installation', slug: 'guides/installation' },
+        { label: 'Environment Setup', slug: 'guides/environment' },
+        { label: 'Project Setup', slug: 'guides/project-setup' },
+        { label: 'Running the project', slug: 'guides/run' },
     ],
 }

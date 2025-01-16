@@ -1,0 +1,59 @@
+---
+title: Environment Setup Guide
+description: Install Vagrant and a Virtual Machine (provider)
+---
+
+The local development environment runs on Homestead (an official pre-packaged [ Vagrant ](https://www.vagrantup.com/) box) 
+which should contain all the dependencies you need to run the project.
+
+You also need a virtual machine provider to run vagrant.
+
+
+### Package management
+
+For this guide you will need Homebrew on MacOS but other package managers should be supported depending on your operating system.
+
+
+
+{% tabs %}
+{% tabitem label="MacOS" %}
+```sh
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+{% /tabitem %}
+{% /tabs %}
+
+
+
+### Install a Virtual machine
+
+{% tabs %}
+{% tabitem label="Mac on Intel" %}
+Download the `dmg` for MacOS x86 on the official [virtualbox.org](https://www.virtualbox.org/wiki/Downloads?) download page.
+{% /tabitem %}
+
+
+{% tabitem label="Mac on Arm" %}
+Install parallels from the official [parallels.com](https://www.parallels.com/) web page.
+{% /tabitem %}
+{% /tabs %}
+
+
+
+### Install Vagrant
+
+
+{% tabs %}
+{% tabitem label="MacOS" %}
+```sh
+brew tap hashicorp/tap
+brew install hashicorp/tap/hashicorp-vagrant
+```
+{% /tabitem %}
+{% /tabs %}
+
+You can verify the installation by running:
+```sh
+vagrant --version
+```
