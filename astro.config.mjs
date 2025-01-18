@@ -7,13 +7,15 @@ import markdoc from '@astrojs/markdoc'
 
 import react from '@astrojs/react'
 
+import tailwind from '@astrojs/tailwind'
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [
         starlight({
-            title: 'My Docs',
+            title: 'osTicket 2.0',
             social: {
-                github: 'https://github.com/withastro/starlight',
+                github: 'https://github.com/enhancesoft/osticket-2.0',
             },
             sidebar: [
                 guides,
@@ -22,8 +24,13 @@ export default defineConfig({
                     autogenerate: { directory: 'reference' },
                 },
             ],
+            customCss: ['./src/styles/tailwind.css'],
         }),
         markdoc(),
         react(),
+        tailwind({
+            // Disable default base styles
+            applyBaseStyles: false,
+        }),
     ],
 })
