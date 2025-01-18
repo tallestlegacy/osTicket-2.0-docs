@@ -1,54 +1,47 @@
-# Starlight Starter Kit: Basics
+<img src="./src/assets/ost-gradient-logo.svg" alt="osTicket SVG logo" style="height: 128px; width: 128px;" />
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+# osTicket 2.0 Documentation
 
-```
-npm create astro@latest -- --template starlight
-```
+## Important references
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
+This is a list of important tech you should be familiar with; used to build the project and documentation markup.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Project                                     | Purpose                                                                                                                    |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [Markdoc](https://markdoc.dev/)             | A Markdown superset; with cool utility components like tabs. All the docs should use this format (`*.mdoc`)                |
+| [Astro](https://astro.build/)               | A static site generation framework with multi-framework support (eg. can use React and Vue components on the same project) |
+| [Starlight](https://starlight.astro.build/) | The template used to build these docs                                                                                      |
+| [Tailwind](https://tailwindcss.com/)        | The CSS preprocessor                                                                                                       |
 
-## 🚀 Project Structure
+## Running the project
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+### Prerequisite
 
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   ├── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+The project uses [PNPM](https://pnpm.io/) for package management so if you don't have this installed already run:
+
+```sh
+# using the Node Package Manager
+npm i -g pnpm
+
+#using Homebrew
+brew install pnpm
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+### Starting local server
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+Start a local server on `localhost:4321` :
 
-Static assets, like favicons, can be placed in the `public/` directory.
+```sh
+pnpm dev
+```
 
-## 🧞 Commands
+The (command) searchbar only works on production builds, so if you want to tech this first run:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+pnpm build
+pnpm preview
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+You access the docs on the same port.
 
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+> Happy hacking!
