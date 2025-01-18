@@ -47,6 +47,9 @@ importers:
                 specifier: ^3.4.17
                 version: 3.4.17
         devDependencies:
+            husky:
+                specifier: ^9.1.7
+                version: 9.1.7
             prettier:
                 specifier: ^3.4.2
                 version: 3.4.2
@@ -2335,6 +2338,14 @@ packages:
             {
                 integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==,
             }
+
+    husky@9.1.7:
+        resolution:
+            {
+                integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==,
+            }
+        engines: { node: '>=18' }
+        hasBin: true
 
     i18next@23.16.8:
         resolution:
@@ -5953,6 +5964,8 @@ snapshots:
             entities: 6.0.0
 
     http-cache-semantics@4.1.1: {}
+
+    husky@9.1.7: {}
 
     i18next@23.16.8:
         dependencies:

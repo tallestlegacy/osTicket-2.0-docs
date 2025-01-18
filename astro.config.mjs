@@ -24,7 +24,7 @@ export default defineConfig({
                     autogenerate: { directory: 'reference' },
                 },
             ],
-            customCss: ['./src/styles/tailwind.css'],
+            customCss: ['./src/styles/tailwind.css', './src/styles/typography.css'],
         }),
         markdoc(),
         react(),
