@@ -1,5 +1,5 @@
 export default {
-    label: 'Guides',
+    label: 'Installation Guides',
     items: [
         // Each item here is one entry in the navigation menu.
         { label: 'Environment Setup', slug: 'guides/environment' },

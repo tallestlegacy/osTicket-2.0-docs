@@ -1,0 +1,52 @@
+---
+title: 'Get Specific Agent'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to retrieve the details of a specific agent using its unique <code>id</code>.
+A <code><strong>GET</strong></code> request is sent to the backend, which fetches the agent&#39;s information from the
+database and returns it in a JSON response.
+
+<Code code='GET /api/agents/:id' title='Endpoint' mark='GET' />
+<code>:id</code>: The unique identifier of the agent you wish to retrieve.
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/agents/:id -u "email:password"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='GET /api/agents/:id' />
+    </TabItem>
+</Tabs>
+
+### Steps to retrieve a specific agent
+
+<Steps>
+
+1. <strong>Send a GET Request with Agent ID</strong>
+
+    - Send a GET request to the /api/agents/:id endpoint, where :id is the unique identifier of the agent you want to retrieve.
+
+2. <strong>Backend Validates the Request</strong>
+
+    - The backend receives the request and validates that the provided id corresponds to an existing agent in the database.
+
+3. <strong>Backend Retrieves Agent Data</strong>
+
+    - Once the agent is found, the backend retrieves the agent's details from the database.
+
+4. <strong>Response</strong>
+
+    - If the agent is found, the backend returns a JSON response with the agent's details.
+
+</Steps>
+
+##### Response example
+
+```json
+
+```
