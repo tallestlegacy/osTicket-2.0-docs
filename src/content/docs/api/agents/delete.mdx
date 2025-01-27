@@ -1,0 +1,55 @@
+---
+title: 'Delete agent'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to delete a specific agent by its id.
+A <code><strong>DELETE</strong></code> request is sent to the backend, which removes the agent
+from the database and returns a confirmation response.
+
+<Code code='DELETE /api/agents/:id' title='Endpoint' mark='DELETE' />
+
+<code>:id</code>: The unique identifier of the agent you wish to retrieve.
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/agents/:id -u "email:password"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='DELETE /api/agents/:id' />
+    </TabItem>
+</Tabs>
+
+### Steps to Delete an Agent
+
+<Steps>
+
+1. <strong>Send a DELETE Request with Agent ID</strong>
+
+    - Send a DELETE request to the /api/agents/:id endpoint, where :id is the unique identifier of the agent you want to delete.
+
+2. <strong>Backend Validates the Request</strong>
+
+    - The backend receives the request and checks whether an agent with the provided id exists in the system.
+
+3. <strong>Backend Deletes the Agent</strong>
+
+    - If the agent exists, the backend proceeds to delete the agent from the database.
+
+4. <strong>Response</strong>
+
+    - If the deletion is successful, the backend returns a JSON response confirming the deletion.
+
+</Steps>
+
+##### Response example
+
+```json
+{
+    "message": "Agent with ID '12345' successfully deleted."
+}
+```

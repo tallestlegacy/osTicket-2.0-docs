@@ -1,0 +1,65 @@
+---
+title: 'Create agents'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to create a new agent using data
+sent from the frontend and storing it in the database.
+The process involves sending a POST request to the backend,
+which creates the agent and returns a JSON response with the newly created agent's details.
+
+<Code code='POST /api/agents' title='Endpoint' mark='POST' />
+&nbsp;
+
+<Tabs class='mt-10'>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/scp/admin/agents -u "email:password"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='POST /api/agents' />
+    </TabItem>
+</Tabs>
+
+### Request Body
+
+The request should contain a JSON payload with the necessary data for creating the new agent.
+Below is an example of the required fields:
+
+```json
+{
+    "first_name": "John Doe",
+    "last_name": "Brief description of the agent",
+    "email": "test@example.com",
+    "username": "user1"
+}
+```
+
+### Steps to create an agent
+
+<Steps>
+
+1. <strong>Frontend sends request</strong>
+
+    - The frontend sends a POST request to the backend with the agent data in the body.
+    - Example of the request body (as shown above).
+
+2. <strong>Backend Processes Request</strong>
+
+    - The backend receives the data and validates it.
+    - The backend then creates a new agent in the database using the provided data.
+
+3. <strong>Response</strong>
+
+    - Once the agent is successfully created, the backend returns a JSON response with the details of the newly created agent.
+
+</Steps>
+
+##### Response example
+
+```json
+
+```

@@ -1,0 +1,68 @@
+---
+title: Update Agents
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to update an existing agent using the PUT or PATCH request.
+You&#39;ll send the updated data for the agent to the backend, which will modify the agent&#39;s
+information in the database and return a JSON response with the updated agent details.
+
+<Code
+    code='PUT /api/agents/:id or PATCH /api/agents/:id'
+    title='Endpoint'
+    mark={['PUT', 'PATCH']}
+/>
+<code>:id</code>: The unique identifier of the agent you wish to update. &nbsp;
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/agents/:id -u "email:password" -d fname="Dennis"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='PATCH /api/agents/:id' />
+    </TabItem>
+</Tabs>
+
+##### Request Body
+
+The request should contain a JSON payload with the fields that need to be updated.
+You can send any subset of the fields, depending on which parts of the agent you want to modify.
+Below is an example of the required fields (You can update any field, the ones left will use the previous data 😜):
+
+```json
+{
+    "first_name": "John Doe",
+    "last_name": "Brief description of the agent",
+    "email": "test@example.com",
+    "username": "user1"
+}
+```
+
+##### Steps to update an agent
+
+<Steps>
+
+1. <strong>Send Update Request</strong>
+
+    - The frontend sends a PUT or PATCH request to the backend with the agent&#39;s ID in the URL and the updated data in the body.
+
+2. <strong>Backend Validates and Processes the Update</strong>
+
+    - The backend verifies that the agent exists in the database using the provided id.
+    - If the agent exists, the backend updates the agent’s details with the new information.
+
+3. <strong>Response</strong>
+
+    - If the update is successful, the backend returns a JSON response with the updated agent details.
+
+</Steps>
+
+##### Response example
+
+```json
+
+```

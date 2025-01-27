@@ -1,0 +1,546 @@
+---
+title: 'Get All Agents'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to retrieve a list of all agents from the database.
+A GET request is sent to the backend, which fetches and returns an array of agent objects in a JSON response.
+
+<Code code='GET /api/agents' title='Endpoint' mark='GET' />
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/agents -u "email:password"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='GET /api/agents' />
+    </TabItem>
+</Tabs>
+
+### Steps to retrieve agents
+
+<Steps>
+
+1. <strong>Send a GET Request</strong>
+
+    - Send a GET request to the /api/agents endpoint to fetch all agents.
+
+2. <strong>Backend Retrieves Agents</strong>
+
+    - The backend processes the request, retrieves all agents from the database, and compiles them into a list.
+
+3. <strong>Response</strong>
+
+    - The backend returns a JSON response containing the list of agents, including details such as the id, name, description, type, and other properties.
+
+</Steps>
+
+##### Response Example
+
+<div class="json-collapsible">
+  ```json collapse={3-23,29-40,52-71,73-92,94-113,115-134,136-155,157-176,179-347,350-352,355-369,371-388,390-440}
+  {
+    "objects": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "user_id": "dkrotich",
+                "flags": 0,
+                "dept_id": 0,
+                "created_at": "2024-06-20T19:26:09.000000Z",
+                "lastlogin": "2024-07-15T06:36:10.000000Z",
+                "name": "",
+                "email": "",
+                "firstname": null,
+                "lastname": null,
+                "username": "",
+                "department": null,
+                "fallback": true,
+                "isadmin": false,
+                "locked": true,
+                "isvisible": false,
+                "onvacation": false,
+                "assigned_only": false,
+                "show_assigned_tickets": false,
+                "change_passwd": false
+            }
+        ],
+        "first_page_url": "http://osticket.homestead.local/api/agents?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://osticket.homestead.local/api/agents?page=1",
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://osticket.homestead.local/api/agents?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "next_page_url": null,
+        "path": "http://osticket.homestead.local/api/agents",
+        "per_page": 5,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    },
+    "view": {
+        "id": 35,
+        "title": "Agents"
+    },
+    "columns": [
+        {
+            "view_id": 35,
+            "column_id": 123,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 1,
+            "heading": "Name",
+            "column": {
+                "id": 123,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Name",
+                "primary": "name",
+                "secondary": null,
+                "filter": "link",
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 35,
+            "column_id": 124,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 2,
+            "heading": "Username",
+            "column": {
+                "id": 124,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "From",
+                "primary": "user_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 35,
+            "column_id": 125,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 3,
+            "heading": "Status",
+            "column": {
+                "id": 125,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Status",
+                "primary": "flags",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 35,
+            "column_id": 126,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 4,
+            "heading": "Department",
+            "column": {
+                "id": 126,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Department",
+                "primary": "dept_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 35,
+            "column_id": 127,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 5,
+            "heading": "Created",
+            "column": {
+                "id": 127,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Created",
+                "primary": "created_at",
+                "secondary": null,
+                "filter": "date:full",
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 35,
+            "column_id": 128,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 6,
+            "heading": "Last Login",
+            "column": {
+                "id": 128,
+                "object_id": 48,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Last Login",
+                "primary": "lastlogin",
+                "secondary": null,
+                "filter": "date:full",
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        }
+    ],
+    "rows": [
+        {
+            "0": {
+                "view_id": 35,
+                "column_id": 123,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 1,
+                "heading": "Name",
+                "id": 123,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "Name",
+                "primary": "name",
+                "secondary": null,
+                "filter": "link",
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Name",
+                    "required": false,
+                    "default": false,
+                    "attribute": true,
+                    "value": "getNameAttribute",
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 1,
+                    "variable": "field_1",
+                    "name": "1"
+                },
+                "value": "Dennis Rotich"
+            },
+            "1": {
+                "view_id": 35,
+                "column_id": 124,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 2,
+                "heading": "Username",
+                "id": 124,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "From",
+                "primary": "user_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Username",
+                    "required": false,
+                    "default": false,
+                    "attribute": true,
+                    "value": "getUsernameAttribute",
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 2,
+                    "variable": "field_2",
+                    "name": "2"
+                },
+                "value": "dkrotich"
+            },
+            "2": {
+                "view_id": 35,
+                "column_id": 125,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 3,
+                "heading": "Status",
+                "id": 125,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "Status",
+                "primary": "flags",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Status",
+                    "required": false,
+                    "default": false,
+                    "attribute": true,
+                    "value": "getStatusAttribute",
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 3,
+                    "variable": "field_3",
+                    "name": "3"
+                },
+                "value": "Active"
+            },
+            "3": {
+                "view_id": 35,
+                "column_id": 126,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 4,
+                "heading": "Department",
+                "id": 126,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "Department",
+                "primary": "dept_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Department",
+                    "required": false,
+                    "default": false,
+                    "attribute": true,
+                    "value": "getDepartmentAttribute",
+                    "configuration": [],
+                    "massEdit": true,
+                    "id": 4,
+                    "variable": "field_4",
+                    "name": "4"
+                },
+                "value": "Support"
+            },
+            "4": {
+                "view_id": 35,
+                "column_id": 127,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 5,
+                "heading": "Created",
+                "id": 127,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "Created",
+                "primary": "created_at",
+                "secondary": null,
+                "filter": "date:full",
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Created",
+                    "required": false,
+                    "default": false,
+                    "attribute": false,
+                    "value": null,
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 5,
+                    "variable": "field_5",
+                    "name": "5"
+                },
+                "value": "2024-06-20 19:26:09"
+            },
+            "5": {
+                "view_id": 35,
+                "column_id": 128,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 6,
+                "heading": "Last Login",
+                "id": 128,
+                "object_id": 48,
+                "field_id": 0,
+                "name": "Last Login",
+                "primary": "lastlogin",
+                "secondary": null,
+                "filter": "date:full",
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Last Login",
+                    "required": false,
+                    "default": false,
+                    "attribute": false,
+                    "value": null,
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 6,
+                    "variable": "field_6",
+                    "name": "6"
+                },
+                "value": "2024-07-15 06:36:10"
+            },
+            "id": 1
+        }
+    ],
+    "views": [
+        {
+            "key": 35,
+            "text": "Agents",
+            "value": 35
+        }
+    ],
+    "actions": [
+        {
+            "multi": null,
+            "tooltip": "",
+            "overflow": false,
+            "config": {
+                "icon": "add",
+                "color": "success",
+                "inverted": true,
+                "tooltip": "Add Staff",
+                "name": "create"
+            },
+            "action": {
+                "id": "10",
+                "type": "redirect",
+                "url": "create",
+                "form": true
+            },
+            "type": "create"
+        },
+        {
+            "multi": null,
+            "tooltip": "",
+            "overflow": false,
+            "config": {
+                "icon": "delete",
+                "color": "danger",
+                "inverted": false,
+                "tooltip": "Delete Agents",
+                "name": "destroy"
+            },
+            "action": {
+                "type": "delete",
+                "url": "agents",
+                "form": true,
+                "verify": {
+                    "title": "Delete Agents",
+                    "msg": "Are you sure you want to delete Agents"
+                },
+                "id": "21"
+            },
+            "type": "delete"
+        },
+        {
+            "type": "multi",
+            "config": {
+                "name": "massProcess",
+                "title": "More",
+                "showTitle": false,
+                "size": "md",
+                "tooltip": "More",
+                "icon": "folder",
+                "color": "dark",
+                "inverted": false
+            },
+            "multi": [
+                {
+                    "multi": null,
+                    "tooltip": "",
+                    "overflow": false,
+                    "config": {
+                        "icon": "thumb_up",
+                        "color": "gray-500",
+                        "inverted": false,
+                        "tooltip": "Enable Agents",
+                        "name": "enable"
+                    },
+                    "action": {
+                        "type": "patch",
+                        "url": "agents/enable/?{id}",
+                        "form": true,
+                        "verify": {
+                            "title": "Enable Agents",
+                            "msg": "Are you sure you want to Enable Agents"
+                        },
+                        "id": "30"
+                    },
+                    "type": "enable",
+                    "title": "Enable"
+                },
+                {
+                    "multi": null,
+                    "tooltip": "",
+                    "overflow": false,
+                    "config": {
+                        "icon": "thumb_down",
+                        "color": "gray-500",
+                        "inverted": false,
+                        "tooltip": "Disable Agents",
+                        "name": "disable"
+                    },
+                    "action": {
+                        "type": "patch",
+                        "url": "agents/disable/?{id}",
+                        "form": true,
+                        "verify": {
+                            "title": "Disable Agents",
+                            "msg": "Are you sure you want to Disable Agents"
+                        },
+                        "id": "31"
+                    },
+                    "type": "disable",
+                    "title": "Disable"
+                }
+            ]
+        }
+    ]
+}
+ ```
+</div>
