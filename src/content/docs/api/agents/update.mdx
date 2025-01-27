@@ -2,14 +2,18 @@
 title: Update Agents
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components'
 
 <Tabs>
     <TabItem label='cURL'>
-        ```shell curl http://osticket.homestead.local/api/agents -u "email:password" -d amount=1200
-        ```
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/agents -u "email:password" -d amount=1200'
+        />
     </TabItem>
-    <TabItem label='PHP'>```shell POST /api/agents ```</TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='POST /api/agents' />
+    </TabItem>
 </Tabs>
 
 ### Parameters
