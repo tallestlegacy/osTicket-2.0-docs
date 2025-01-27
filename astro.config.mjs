@@ -1,13 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
+
+// Astro plugins
 import starlight from '@astrojs/starlight'
-import guides from './src/routes/guides'
-
 import markdoc from '@astrojs/markdoc'
-
 import react from '@astrojs/react'
-
 import tailwind from '@astrojs/tailwind'
+
+// Router config
+import sidebar from './src/routes'
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,14 +18,9 @@ export default defineConfig({
             social: {
                 github: 'https://github.com/enhancesoft/osticket-2.0',
             },
-            sidebar: [
-                guides,
-                {
-                    label: 'Reference',
-                    autogenerate: { directory: 'reference' },
-                },
-            ],
+            sidebar,
             customCss: ['./src/styles/tailwind.css', './src/styles/typography.css'],
+            plugins: [],
         }),
         markdoc(),
         react(),
