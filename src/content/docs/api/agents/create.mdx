@@ -10,13 +10,12 @@ The process involves sending a POST request to the backend,
 which creates the agent and returns a JSON response with the newly created agent's details.
 
 <Code code='POST /api/agents' title='Endpoint' mark='POST' />
-&nbsp;
 
 <Tabs class='mt-10'>
     <TabItem label='cURL'>
         <Code
             lang='sh'
-            code='curl http://osticket.homestead.local/scp/admin/agents -u "email:password"'
+            code='curl http://osticket.homestead.local/api/agents -u "email:password"'
         />
     </TabItem>
     <TabItem label='PHP'>
