@@ -1,80 +1,67 @@
 ---
-title: 'Get All Agents'
+title: 'Get all teams'
 ---
 
 import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
 
-This section explains how to retrieve a list of all agents from the database.
-A GET request is sent to the backend, which fetches and returns an array of agent objects in a JSON response.
+This section explains how to retrieve a list of all teams from the database.
+A GET request is sent to the backend, which fetches and returns an array of team objects in a JSON response.
 
-<Code code='GET /api/agents' title='Endpoint' mark='GET' />
+<Code code='GET /api/teams' title='Endpoint' mark='GET' />
 
 <Tabs>
     <TabItem label='cURL'>
-        <Code
-            lang='sh'
-            code='curl http://osticket.homestead.local/api/agents -u "email:password"'
-        />
+        <Code lang='sh' code='curl http://osticket.homestead.local/api/teams -u "email:password"' />
     </TabItem>
     <TabItem label='PHP'>
-        <Code lang='shell' code='GET /api/agents' />
+        <Code lang='shell' code='GET /api/teams' />
     </TabItem>
 </Tabs>
 
-### Steps to retrieve agents
+### Steps to retrieve teams
 
 <Steps>
 
 1. <strong>Send a GET Request</strong>
 
-    - Send a GET request to the /api/agents endpoint to fetch all agents.
+    - Send a GET request to the /api/teams endpoint to fetch all teams.
 
-2. <strong>Backend Retrieves Agents</strong>
+2. <strong>Backend Retrieves teams</strong>
 
-    - The backend handles the request, fetches all agents from the database,
+    - The backend handles the request, fetches all teams from the database,
       organizes them into a table, and then returns the data in a format that matches the user's table structure.
 
 3. <strong>Response</strong>
 
-    - The backend returns a JSON response containing the list of agents, including details such as the id, name, description, type, and other properties.
+    - The backend returns a JSON response containing the list of teams, including details such as the id, name, description, type, and other properties.
 
 </Steps>
 
 ##### Response Example
 
 <div class="json-collapsible">
-  ```json collapse={3-23,29-40,52-71,73-92,94-113,115-134,136-155,157-176,179-347,350-352,355-369,371-388,390-440}
+  ```json collapse={3-13,19-30,42-61,63-82,84-103,105-124,126-145,147-166,169-337, 340-342,345-359, 361-378,380-430}
   {
     "objects": {
         "current_page": 1,
         "data": [
             {
                 "id": 1,
-                "user_id": "dkrotich",
+                "name": "Level I Support",
                 "flags": 0,
-                "dept_id": 0,
-                "created_at": "2024-06-20T19:26:09.000000Z",
-                "lastlogin": "2024-07-15T06:36:10.000000Z",
-                "name": "",
-                "email": "",
-                "firstname": null,
-                "lastname": null,
-                "username": "",
-                "department": null,
-                "fallback": true,
-                "isadmin": false,
-                "locked": true,
-                "isvisible": false,
-                "onvacation": false,
-                "assigned_only": false,
-                "show_assigned_tickets": false,
-                "change_passwd": false
+                "lead_id": 0,
+                "created_at": "2024-06-20T19:26:08.000000Z",
+                "updated_at": "2024-06-28T07:22:11.000000Z",
+                "members": 1,
+                "active": false,
+                "alert": false,
+                "leadname": false
             }
         ],
-        "first_page_url": "http://osticket.homestead.local/api/agents?page=1",
+        "first_page_url": "http://osticket.homestead.local/api/teams?page=1",
         "from": 1,
         "last_page": 1,
-        "last_page_url": "http://osticket.homestead.local/api/agents?page=1",
+        "last_page_url": "http://osticket.homestead.local/api/teams?page=1",
         "links": [
             {
                 "url": null,
@@ -82,7 +69,7 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                 "active": false
             },
             {
-                "url": "http://osticket.homestead.local/api/agents?page=1",
+                "url": "http://osticket.homestead.local/api/teams?page=1",
                 "label": "1",
                 "active": true
             },
@@ -93,30 +80,30 @@ A GET request is sent to the backend, which fetches and returns an array of agen
             }
         ],
         "next_page_url": null,
-        "path": "http://osticket.homestead.local/api/agents",
+        "path": "http://osticket.homestead.local/api/teams",
         "per_page": 5,
         "prev_page_url": null,
         "to": 1,
         "total": 1
     },
     "view": {
-        "id": 35,
-        "title": "Agents"
+        "id": 36,
+        "title": "Teams"
     },
     "columns": [
         {
-            "view_id": 35,
-            "column_id": 123,
+            "view_id": 36,
+            "column_id": 129,
             "staff_id": 0,
             "flags": 2,
             "sort": 1,
-            "heading": "Name",
+            "heading": "Team Name",
             "column": {
-                "id": 123,
-                "object_id": 48,
+                "id": 129,
+                "object_id": 51,
                 "field_id": 0,
                 "flags": 0,
-                "name": "Name",
+                "name": "Team Name",
                 "primary": "name",
                 "secondary": null,
                 "filter": "link",
@@ -128,38 +115,15 @@ A GET request is sent to the backend, which fetches and returns an array of agen
             }
         },
         {
-            "view_id": 35,
-            "column_id": 124,
+            "view_id": 36,
+            "column_id": 130,
             "staff_id": 0,
             "flags": 2,
             "sort": 2,
-            "heading": "Username",
-            "column": {
-                "id": 124,
-                "object_id": 48,
-                "field_id": 0,
-                "flags": 0,
-                "name": "From",
-                "primary": "user_id",
-                "secondary": null,
-                "filter": null,
-                "truncate": "wrap",
-                "extra": null,
-                "status": "Disabled",
-                "active": false,
-                "annotations": []
-            }
-        },
-        {
-            "view_id": 35,
-            "column_id": 125,
-            "staff_id": 0,
-            "flags": 2,
-            "sort": 3,
             "heading": "Status",
             "column": {
-                "id": 125,
-                "object_id": 48,
+                "id": 130,
+                "object_id": 51,
                 "field_id": 0,
                 "flags": 0,
                 "name": "Status",
@@ -174,19 +138,19 @@ A GET request is sent to the backend, which fetches and returns an array of agen
             }
         },
         {
-            "view_id": 35,
-            "column_id": 126,
+            "view_id": 36,
+            "column_id": 131,
             "staff_id": 0,
             "flags": 2,
-            "sort": 4,
-            "heading": "Department",
+            "sort": 3,
+            "heading": "Members",
             "column": {
-                "id": 126,
-                "object_id": 48,
+                "id": 131,
+                "object_id": 51,
                 "field_id": 0,
                 "flags": 0,
-                "name": "Department",
-                "primary": "dept_id",
+                "name": "Members",
+                "primary": "members",
                 "secondary": null,
                 "filter": null,
                 "truncate": "wrap",
@@ -197,15 +161,38 @@ A GET request is sent to the backend, which fetches and returns an array of agen
             }
         },
         {
-            "view_id": 35,
-            "column_id": 127,
+            "view_id": 36,
+            "column_id": 132,
+            "staff_id": 0,
+            "flags": 2,
+            "sort": 4,
+            "heading": "Team Lead",
+            "column": {
+                "id": 132,
+                "object_id": 51,
+                "field_id": 0,
+                "flags": 0,
+                "name": "Team Lead",
+                "primary": "lead_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "status": "Disabled",
+                "active": false,
+                "annotations": []
+            }
+        },
+        {
+            "view_id": 36,
+            "column_id": 133,
             "staff_id": 0,
             "flags": 2,
             "sort": 5,
             "heading": "Created",
             "column": {
-                "id": 127,
-                "object_id": 48,
+                "id": 133,
+                "object_id": 51,
                 "field_id": 0,
                 "flags": 0,
                 "name": "Created",
@@ -220,19 +207,19 @@ A GET request is sent to the backend, which fetches and returns an array of agen
             }
         },
         {
-            "view_id": 35,
-            "column_id": 128,
+            "view_id": 36,
+            "column_id": 134,
             "staff_id": 0,
             "flags": 2,
             "sort": 6,
-            "heading": "Last Login",
+            "heading": "Last Updated",
             "column": {
-                "id": 128,
-                "object_id": 48,
+                "id": 134,
+                "object_id": 51,
                 "field_id": 0,
                 "flags": 0,
-                "name": "Last Login",
-                "primary": "lastlogin",
+                "name": "Last Updated",
+                "primary": "updated_at",
                 "secondary": null,
                 "filter": "date:full",
                 "truncate": "wrap",
@@ -246,74 +233,44 @@ A GET request is sent to the backend, which fetches and returns an array of agen
     "rows": [
         {
             "0": {
-                "view_id": 35,
-                "column_id": 123,
+                "view_id": 36,
+                "column_id": 129,
                 "staff_id": 0,
                 "flags": 0,
                 "sort": 1,
-                "heading": "Name",
-                "id": 123,
-                "object_id": 48,
+                "heading": "Team Name",
+                "id": 129,
+                "object_id": 51,
                 "field_id": 0,
-                "name": "Name",
+                "name": "Team Name",
                 "primary": "name",
                 "secondary": null,
                 "filter": "link",
                 "truncate": "wrap",
                 "extra": null,
                 "ht": {
-                    "label": "Name",
+                    "label": "Team Name",
                     "required": false,
                     "default": false,
-                    "attribute": true,
-                    "value": "getNameAttribute",
+                    "attribute": false,
+                    "value": null,
                     "configuration": [],
                     "massEdit": false,
                     "id": 1,
                     "variable": "field_1",
                     "name": "1"
                 },
-                "value": "Dennis Rotich"
+                "value": "Level I Support"
             },
             "1": {
-                "view_id": 35,
-                "column_id": 124,
+                "view_id": 36,
+                "column_id": 130,
                 "staff_id": 0,
                 "flags": 0,
                 "sort": 2,
-                "heading": "Username",
-                "id": 124,
-                "object_id": 48,
-                "field_id": 0,
-                "name": "From",
-                "primary": "user_id",
-                "secondary": null,
-                "filter": null,
-                "truncate": "wrap",
-                "extra": null,
-                "ht": {
-                    "label": "Username",
-                    "required": false,
-                    "default": false,
-                    "attribute": true,
-                    "value": "getUsernameAttribute",
-                    "configuration": [],
-                    "massEdit": false,
-                    "id": 2,
-                    "variable": "field_2",
-                    "name": "2"
-                },
-                "value": "dkrotich"
-            },
-            "2": {
-                "view_id": 35,
-                "column_id": 125,
-                "staff_id": 0,
-                "flags": 0,
-                "sort": 3,
                 "heading": "Status",
-                "id": 125,
-                "object_id": 48,
+                "id": 130,
+                "object_id": 51,
                 "field_id": 0,
                 "name": "Status",
                 "primary": "flags",
@@ -329,51 +286,81 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                     "value": "getStatusAttribute",
                     "configuration": [],
                     "massEdit": false,
-                    "id": 3,
-                    "variable": "field_3",
-                    "name": "3"
+                    "id": 2,
+                    "variable": "field_2",
+                    "name": "2"
                 },
                 "value": "Active"
             },
-            "3": {
-                "view_id": 35,
-                "column_id": 126,
+            "2": {
+                "view_id": 36,
+                "column_id": 131,
                 "staff_id": 0,
                 "flags": 0,
-                "sort": 4,
-                "heading": "Department",
-                "id": 126,
-                "object_id": 48,
+                "sort": 3,
+                "heading": "Members",
+                "id": 131,
+                "object_id": 51,
                 "field_id": 0,
-                "name": "Department",
-                "primary": "dept_id",
+                "name": "Members",
+                "primary": "members",
                 "secondary": null,
                 "filter": null,
                 "truncate": "wrap",
                 "extra": null,
                 "ht": {
-                    "label": "Department",
+                    "label": "Members",
                     "required": false,
                     "default": false,
                     "attribute": true,
-                    "value": "getDepartmentAttribute",
+                    "value": "getMembersAttribute",
+                    "configuration": [],
+                    "massEdit": false,
+                    "id": 3,
+                    "variable": "field_3",
+                    "name": "3"
+                },
+                "value": 1
+            },
+            "3": {
+                "view_id": 36,
+                "column_id": 132,
+                "staff_id": 0,
+                "flags": 0,
+                "sort": 4,
+                "heading": "Team Lead",
+                "id": 132,
+                "object_id": 51,
+                "field_id": 0,
+                "name": "Team Lead",
+                "primary": "lead_id",
+                "secondary": null,
+                "filter": null,
+                "truncate": "wrap",
+                "extra": null,
+                "ht": {
+                    "label": "Team Lead",
+                    "required": false,
+                    "default": false,
+                    "attribute": true,
+                    "value": "getLeadAttribute",
                     "configuration": [],
                     "massEdit": true,
                     "id": 4,
                     "variable": "field_4",
                     "name": "4"
                 },
-                "value": "Support"
+                "value": "Dennis Rotich"
             },
             "4": {
-                "view_id": 35,
-                "column_id": 127,
+                "view_id": 36,
+                "column_id": 133,
                 "staff_id": 0,
                 "flags": 0,
                 "sort": 5,
                 "heading": "Created",
-                "id": 127,
-                "object_id": 48,
+                "id": 133,
+                "object_id": 51,
                 "field_id": 0,
                 "name": "Created",
                 "primary": "created_at",
@@ -382,7 +369,7 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                 "truncate": "wrap",
                 "extra": null,
                 "ht": {
-                    "label": "Created",
+                    "label": "Date Added",
                     "required": false,
                     "default": false,
                     "attribute": false,
@@ -393,26 +380,26 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                     "variable": "field_5",
                     "name": "5"
                 },
-                "value": "2024-06-20 19:26:09"
+                "value": "2024-06-20 19:26:08"
             },
             "5": {
-                "view_id": 35,
-                "column_id": 128,
+                "view_id": 36,
+                "column_id": 134,
                 "staff_id": 0,
                 "flags": 0,
                 "sort": 6,
-                "heading": "Last Login",
-                "id": 128,
-                "object_id": 48,
+                "heading": "Last Updated",
+                "id": 134,
+                "object_id": 51,
                 "field_id": 0,
-                "name": "Last Login",
-                "primary": "lastlogin",
+                "name": "Last Updated",
+                "primary": "updated_at",
                 "secondary": null,
                 "filter": "date:full",
                 "truncate": "wrap",
                 "extra": null,
                 "ht": {
-                    "label": "Last Login",
+                    "label": "Last Updated",
                     "required": false,
                     "default": false,
                     "attribute": false,
@@ -423,16 +410,16 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                     "variable": "field_6",
                     "name": "6"
                 },
-                "value": "2024-07-15 06:36:10"
+                "value": "2024-06-28 07:22:11"
             },
             "id": 1
         }
     ],
     "views": [
         {
-            "key": 35,
-            "text": "Agents",
-            "value": 35
+            "key": 36,
+            "text": "Teams",
+            "value": 36
         }
     ],
     "actions": [
@@ -444,7 +431,7 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                 "icon": "add",
                 "color": "success",
                 "inverted": true,
-                "tooltip": "Add Staff",
+                "tooltip": "Add Team",
                 "name": "create"
             },
             "action": {
@@ -463,16 +450,16 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                 "icon": "delete",
                 "color": "danger",
                 "inverted": false,
-                "tooltip": "Delete Agents",
+                "tooltip": "Delete Teams",
                 "name": "destroy"
             },
             "action": {
                 "type": "delete",
-                "url": "agents",
+                "url": "teams",
                 "form": true,
                 "verify": {
-                    "title": "Delete Agents",
-                    "msg": "Are you sure you want to delete Agents"
+                    "title": "Delete Teams",
+                    "msg": "Are you sure you want to delete Teams"
                 },
                 "id": "21"
             },
@@ -499,16 +486,16 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                         "icon": "thumb_up",
                         "color": "gray-500",
                         "inverted": false,
-                        "tooltip": "Enable Agents",
+                        "tooltip": "Enable Teams",
                         "name": "enable"
                     },
                     "action": {
                         "type": "patch",
-                        "url": "agents/enable/?{id}",
+                        "url": "teams/enable/?{id}",
                         "form": true,
                         "verify": {
-                            "title": "Enable Agents",
-                            "msg": "Are you sure you want to Enable Agents"
+                            "title": "Enable Teams",
+                            "msg": "Are you sure you want to Enable Teams"
                         },
                         "id": "30"
                     },
@@ -523,16 +510,16 @@ A GET request is sent to the backend, which fetches and returns an array of agen
                         "icon": "thumb_down",
                         "color": "gray-500",
                         "inverted": false,
-                        "tooltip": "Disable Agents",
+                        "tooltip": "Disable Teams",
                         "name": "disable"
                     },
                     "action": {
                         "type": "patch",
-                        "url": "agents/disable/?{id}",
+                        "url": "teams/disable/?{id}",
                         "form": true,
                         "verify": {
-                            "title": "Disable Agents",
-                            "msg": "Are you sure you want to Disable Agents"
+                            "title": "Disable Teams",
+                            "msg": "Are you sure you want to Disable Teams"
                         },
                         "id": "31"
                     },

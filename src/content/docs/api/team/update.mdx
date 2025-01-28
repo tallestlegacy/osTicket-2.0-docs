@@ -1,0 +1,78 @@
+---
+title: 'Update team'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to update an existing team using the <code><strong>PUT</strong></code> or <code><strong>PATCH</strong></code> request.
+You&#39;ll send the updated data for the team to the backend, which will modify the team&#39;s
+information in the database and return a JSON response with the updated team details.
+
+<Code code='PUT /api/teams/:id or PATCH /api/teams/:id' title='Endpoint' mark={['PUT', 'PATCH']} />
+<code>:id</code>: The unique identifier of the team you wish to update.
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/teams/:id -u "email:password" -d name="Level I Support"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='PATCH /api/teams/:id' />
+    </TabItem>
+</Tabs>
+
+##### Request Body
+
+The request should contain a JSON payload with the fields that need to be updated.
+You can send any subset of the fields, depending on which parts of the team you want to modify.
+Below is an example of the required fields (You can update any field, the ones left will use the previous data 😜):
+
+```json
+{
+    "name": "Level I Support",
+    "status": "true"
+}
+```
+
+##### Steps to update an team
+
+<Steps>
+
+1. <strong>Send Update Request</strong>
+
+    - The frontend sends a PUT or PATCH request to the backend with the team&#39;s ID in the URL and the updated data in the body.
+
+2. <strong>Backend Validates and Processes the Update</strong>
+
+    - The backend verifies that the team exists in the database using the provided id.
+    - If the team exists, the backend updates the team&#39;s details with the new information.
+
+3. <strong>Response</strong>
+
+    - If the update is successful, the backend returns a JSON response with the updated team details.
+
+</Steps>
+
+##### Response example
+
+```json
+{
+    "object": {
+        "id": 1,
+        "lead_id": 1,
+        "flags": 1,
+        "name": "Level I Support",
+        "notes": "<p class=\"editor-paragraph\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Tier 1 support, responsible for the initial interaction with customers agains</span></p>",
+        "created_at": "2024-06-20T19:26:08.000000Z",
+        "updated_at": "2025-01-28T07:45:45.000000Z",
+        "tips": {},
+        "form": {},
+        "active": true,
+        "members": 1,
+        "alert": false,
+        "leadname": "s1"
+    }
+}
+```

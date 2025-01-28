@@ -1,0 +1,59 @@
+---
+title: 'Create team'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to create a new team using data
+sent from the frontend and storing it in the database.
+The process involves sending a <code><strong>POST</strong></code> request to the backend,
+which creates the team and returns a JSON response with the newly created team's details.
+
+<Code code='POST /api/teams' title='Endpoint' mark='POST' />
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code lang='sh' code='curl http://osticket.homestead.local/api/teams -u "email:password"' />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='POST /api/teams' />
+    </TabItem>
+</Tabs>
+
+### Request Body
+
+The request should contain a JSON payload with the necessary data for creating the new team.
+Below is an example of the required fields:
+
+```json
+{
+    "name": "Level I Support",
+    "status": "true"
+}
+```
+
+### Steps to create a team
+
+<Steps>
+
+1. <strong>Frontend sends request</strong>
+
+    - The frontend sends a POST request to the backend with the team data in the body.
+    - Example of the request body (as shown above).
+
+2. <strong>Backend Processes Request</strong>
+
+    - The backend receives the data and validates it.
+    - The backend then creates a new team in the database using the provided data.
+
+3. <strong>Response</strong>
+
+    - Once the team is successfully created, the backend returns a JSON response with the details of the newly created team.
+
+</Steps>
+
+##### Response example
+
+```json
+
+```
