@@ -1,0 +1,55 @@
+---
+title: 'Delete team'
+---
+
+import { Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components'
+
+This section explains how to delete a specific team by its <code>id</code>.
+A <code><strong>DELETE</strong></code> request is sent to the backend, which removes the team
+from the database and returns a confirmation response.
+
+<Code code='DELETE /api/teams/:id' title='Endpoint' mark='DELETE' />
+
+<code>:id</code>: The unique identifier of the team you wish to retrieve.
+
+<Tabs>
+    <TabItem label='cURL'>
+        <Code
+            lang='sh'
+            code='curl http://osticket.homestead.local/api/teams/:id -u "email:password"'
+        />
+    </TabItem>
+    <TabItem label='PHP'>
+        <Code lang='shell' code='DELETE /api/teams/:id' />
+    </TabItem>
+</Tabs>
+
+### Steps to Delete a team
+
+<Steps>
+
+1. <strong>Send a DELETE Request with team ID</strong>
+
+    - Send a DELETE request to the /api/teams/:id endpoint, where :id is the unique identifier of the team you want to delete.
+
+2. <strong>Backend Validates the Request</strong>
+
+    - The backend receives the request and checks whether a team with the provided id exists in the system.
+
+3. <strong>Backend Deletes the team</strong>
+
+    - If the team exists, the backend proceeds to delete the team from the database.
+
+4. <strong>Response</strong>
+
+    - If the deletion is successful, the backend returns a JSON response confirming the deletion.
+
+</Steps>
+
+##### Response example
+
+```json
+{
+    "message": "team with ID '12345' successfully deleted."
+}
+```
